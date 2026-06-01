@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  @apply font-sans;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    @apply text-gray-900 bg-gray-50;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  button {
+    @apply transition-all duration-200;
+  }
+
+  input, textarea, select {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Utility Classes */
+.glass {
+  @apply bg-white/80 backdrop-blur-sm;
+}
+
+.shadow-soft {
+  @apply shadow-sm;
+}
+
+.shadow-medium {
+  @apply shadow-md;
+}
+
+.shadow-large {
+  @apply shadow-lg;
+}
+
+/* Confidence Score Animation */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.confidence-score {
+  animation: scaleUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Filter Result Cards Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-card {
+  animation: slideDown 0.4s ease-out forwards;
+  opacity: 0;
+
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  &:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  &:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+}
+
+/* Drawer Animation */
+@keyframes slideInDrawer {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.drawer {
+  animation: slideInDrawer 0.3s ease-out;
+}
+
+.drawer-overlay {
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+/* Modal Animation */
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.95) translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Red Flag Badges */
+.red-flag-critical {
+  background-color: var(--error);
+  color: white;
+}
+
+.red-flag-warning {
+  background-color: var(--warning);
+  color: #1f2937;
+}
+
+/* History Table Styling */
+.history-row-accepted {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left: 4px solid var(--success);
+}
+
+.history-row-rejected {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left: 4px solid var(--error);
+}
+
+/* Print Styles for PDF Export */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .navbar,
+  .settings-button,
+  .theme-toggle,
+  .generate-button,
+  button:not(.no-print),
+  .history-section {
+    display: none !important;
+  }
+
+  .pdf-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .pdf-header {
+    text-align: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+
+  .pdf-section {
+    margin-bottom: 25px;
+    page-break-inside: avoid;
+  }
+
+  .pdf-section h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+  }
+
+  .pdf-step {
+    margin: 10px 0;
+    padding: 8px;
+    border-left: 3px solid #ccc;
+    padding-left: 12px;
+  }
+
+  .pdf-verdict {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 4px;
+  }
+
+  .pdf-verdict-accepted {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+
+  .pdf-verdict-rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+  }
+
+  .pdf-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 12px 0;
+  }
+
+  .pdf-detail-item {
+    padding: 8px;
+    background-color: #f3f4f6;
+  }
+
+  .pdf-detail-label {
+    font-weight: bold;
+    font-size: 12px;
+    color: #666;
+  }
+
+  .pdf-detail-value {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+}
+
