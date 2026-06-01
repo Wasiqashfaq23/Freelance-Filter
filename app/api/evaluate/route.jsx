@@ -30,7 +30,7 @@ export async function POST(request) {
       clientRating: body.clientRating,
     };
 
-    const result = runChain(evaluationRequest, config);
+    const result =await runChain(evaluationRequest, config);
 
     return Response.json(result);
   } catch (error) {
